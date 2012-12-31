@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+  
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href ="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+    <title>Login</title>
+    <style type="text/css">
+      .label {text-align: right}
+      .error {color: red}
+    </style>
+  
+  </head>
+  
+  <body>
+  <a href="/signup">Signup</a>
+    <h2>Login</h2>
+    <form method="post">
+      <table>
+        <tr>
+          <td class="label">
+            Username
+          </td>
+          <td>
+            <input type="text" name="username" value="{{username}}">
+          </td>
+          <td class="error">
+            {{error_username}}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Password
+          </td>
+          <td>
+            <input type="password" name="password" value="">
+          </td>
+          <td class="error">
+            {{error_password}}
+          </td>
+        </tr>
+      </table>
+      <input type="submit">
+    </form>
+  </body>
+
+</html>
