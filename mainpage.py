@@ -14,8 +14,7 @@ class MainPage(Handler):
         user = self.testCookie('user')
         if not user:
             self.redirect("/login")
-            
-            
+             
         self.render(HTML_TEMPLATE, username=user)#arg=arg etc...
         
     def post(self, arg):

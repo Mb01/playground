@@ -24,8 +24,8 @@ def getQuestions(update=False):
         logging.info("questions hits cache")
     return questions
             
-def createQuestion(q):
-    quest = Question(question=q, points=0, votes=0)
+def createQuestion(q, a):
+    quest = Question(question=q, points=0, votes=0, answer=a)
     quest.put()
     logging.info("question: " + q + " created.")
 

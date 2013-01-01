@@ -29,6 +29,7 @@ class User(db.Model):
 
 class Question(db.Model):
     question = db.TextProperty(required=True)
+    answer = db.StringProperty(required=True)
     points = db.IntegerProperty(required=True)
     votes = db.IntegerProperty(required=True)
     

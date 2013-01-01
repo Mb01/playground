@@ -9,27 +9,24 @@ import webapp2
 from envdef import Handler
 from dbfunc import getQuestions
 
-HTML_TEMPLATE = "mainpage.html"
+HTML_TEMPLATE = "question.html"
 
 def questionForm():
     questions = getQuestions()
     if not questions:
         return "Couldn't get a question."
     q  = random.choice(questions)
-    
-    data_out = q['question']
-    
+    return q
         
 
 class AjaxHandler(Handler):
     def get(self):
-        #lets just get it to the point where it can return a question
-        data_out = questionForm()
-        self.response.out.write(data_out)
+        
+        
+        self.render(HTML_TEMPLATE, **questionForm())
         
     def post(self):
         pass
-        #self.response.out.write(data_out)
 
 app = webapp2.WSGIApplication([('/ajax', AjaxHandler)], debug=True)
 

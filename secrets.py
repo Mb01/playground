@@ -3,12 +3,9 @@ Created on Dec 2, 2012
 
 @author: mark
 
-In case you were wondering, some of these values SHOULD BE CHANGED 
+In case you were wondering, all of these values SHOULD BE CHANGED 
 BEFORE PUTTING ONLINE.
-This file was made as part of a website
-with the HOPE that password recovery from a leaked database will be less likely.
-No other protection is even hoped for. 
-This isn't really for re-use, by the way. 
+
 '''
 import hashlib
 
