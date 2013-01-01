@@ -24,10 +24,11 @@ def getQuestions(update=False):
         logging.info("questions hits cache")
     return questions
             
-def createQuestion(q, a):
-    quest = Question(question=q, points=0, votes=0, answer=a)
+def createQuestion(q, a, c1, c2, c3):
+    quest = Question(question=q, points=0, votes=0, answer=a, choice1=c1,choice2=c2,choice3=c3)
     quest.put()
     logging.info("question: " + q + " created.")
+    getQuestions(update=True)
 
 
 ###user functions
@@ -47,6 +48,6 @@ def checkCred(username, password):
     user = User.all().filter("username =", username).get()
     if user:
         passMatch = testHash(user.password, password)
-    if passMatch:
-        return True, user.username, user.points
-    return False
+        if passMatch:
+            return True, user.username, user.points
+    return False, None, None
