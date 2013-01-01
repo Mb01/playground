@@ -1,5 +1,18 @@
 <p>{{question}}</p>
-<button id="option1">{{option1}}</button>
-<button id="option2">{{option2}}</button>
-<button id="option3">{{option3}}</button>
-<button id="option4">{{option4}}</button>
+<button class="answer" id="option1">{{options[0]}}</button>
+<button class="answer" id="option2">{{options[1]}}</button>
+<button class="answer" id="option3">{{options[2]}}</button>
+<button class="answer" id="option4">{{options[3]}}</button>
+
+<div id="appraise"></div>
+
+<script>
+$('.answer').click(function(){
+	$.post("/ajax", 
+			"ans=" + escape( $(this).html() ) + "&hashed={{hashed}}",
+			function(data){
+				$("#appraise").html(data);
+			});
+});
+</script>
+

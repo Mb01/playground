@@ -21,7 +21,8 @@ def getQuestions(update=False):
             questions.append(quest.asDict())
         mems("_questions123", questions)
     else:
-        logging.info("questions hits cache")
+        #logging.info("questions hits cache")
+        pass
     return questions
             
 def createQuestion(q, a, c1, c2, c3):
