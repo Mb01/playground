@@ -1,9 +1,13 @@
 <fieldset id="boxThing" style="margin: 10px;">
-<legend style="font-size:30px;color:brown;">{{question}}</legend>
-<button class="answer button medium blue" id="option1"><span>{{options[0]}}</span></button>
-<button class="answer button medium blue" id="option2"><span>{{options[1]}}</span></button>
-<button class="answer button medium blue" id="option3"><span>{{options[2]}}</span></button>
-<button class="answer button medium blue" id="option4"><span>{{options[3]}}</span></button>
+	<legend style="font-size:30px;color:brown;">{{question}}</legend>
+	<button class="answer button medium blue" id="option1"><span>{{options[0]}}</span></button>
+	<button class="answer button medium blue" id="option2"><span>{{options[1]}}</span></button>
+	<button class="answer button medium blue" id="option3"><span>{{options[2]}}</span></button>
+	<button class="answer button medium blue" id="option4"><span>{{options[3]}}</span></button>
+	</br>
+	</br>
+	<button class="button small red" id="bad"><span>bad question</span></button>
+	<button class="button small green" id="good"><span>good question</span></button>
 </fieldset>
 <div id="appraise"></div>
 
@@ -26,6 +30,28 @@ $('.answer').click(function(){
 				nR = nR.substr(0,7);
 				$('#rating').html(nR);
 			});
+	});
+	$('#bad').click(function(){
+		$.post("/ajax",
+				"bad=bad",
+			  	function(data){
+					$("#appraise").html(data);
+			    }
+				).complete(function(){
+					$('#bad').hide();
+					$('#good').hide();
+				});
+	});
+	$('#good').click(function(){
+		$.post("/ajax",
+				"good=good",
+			  	function(data){
+					$("#appraise").html(data);
+			    }
+				).complete(function(){
+					$('#bad').hide();
+					$('#good').hide();
+				});
 	});
 </script>
 

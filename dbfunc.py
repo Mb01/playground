@@ -5,7 +5,7 @@ Created on Dec 3, 2012
 '''
 import logging
 from secrets import makeHash, testHash
-from dbdef import User, Question 
+from dbdef import User, Question, db
 from cache_util import mems, memg
 
 def getQuestions(update=False):
@@ -31,7 +31,18 @@ def createQuestion(q, a, c1, c2, c3):
     logging.info("question: " + q + " created.")
     getQuestions(update=True)
 
-
+def voteQuestion(up, key):#up=1 down=0 that's "up?"
+    question = Question.get(key)
+    if up:
+        question.votes += 1
+    else:
+        question.votes -= 1
+    if question.votes < -10:
+        db.delete(key)
+        getQuestions(update=True)
+    else:
+        question.put()
+   
 ###user functions
 def createUser(username, password, email=None):
     password = makeHash(password)

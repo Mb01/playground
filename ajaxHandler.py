@@ -3,12 +3,13 @@ Created on Dec 29, 2012
 
 @author: mark
 '''
-import logging
+
 import random
 import webapp2
 from envdef import Handler
-from dbfunc import getQuestions, createQuestion, updateRating
+from dbfunc import getQuestions, createQuestion, updateRating, voteQuestion
 from secrets import testCookieHash, makeCookieHash
+
 
 HTML_TEMPLATE = "question.html"
 
@@ -61,6 +62,19 @@ class AjaxHandler(Handler):
             qRating = self.testCookie('qRating')
             userRating = updateRating(userName, float(userRating), qK, float(qRating), score)
             self.setCookie('rating', userName + userRating)
+            return
+        #case: good question vote
+        good = self.request.get('good')
+        if good:
+            qK = self.testCookie('qK')
+            voteQuestion(1,qK)
+            return
+        bad = self.request.get('bad')
+        if bad:
+            qK = self.testCookie('qK')
+            voteQuestion(0,qK)
+            return
+            
 
 app = webapp2.WSGIApplication([('/ajax', AjaxHandler)], debug=True)
 
