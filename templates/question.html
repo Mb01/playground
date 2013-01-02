@@ -1,21 +1,23 @@
-<p>{{question}}</p>
-<button class="answer button" id="option1">{{options[0]}}</button>
-<button class="answer button" id="option2">{{options[1]}}</button>
-<button class="answer button" id="option3">{{options[2]}}</button>
-<button class="answer button" id="option4">{{options[3]}}</button>
-
+<fieldset style="margin: 10px;">
+<legend>{{question}}</legend>
+<button class="answer button medium blue" id="option1"><span>{{options[0]}}</span></button>
+<button class="answer button medium blue" id="option2"><span>{{options[1]}}</span></button>
+<button class="answer button medium blue" id="option3"><span>{{options[2]}}</span></button>
+<button class="answer button medium blue" id="option4"><span>{{options[3]}}</span></button>
+</fieldset>
 <div id="appraise"></div>
 
 <script>
 $('.answer').click(function(){
+	$("#appraise").css("font-size","30px");
 	$("#appraise").html("Loading");
 	$("#appraise").fadeOut().fadeIn();
 	$.post("/ajax", 
-			"ans=" + escape( $(this).html() ) + "&hashed={{hashed}}",
+			"ans=" + escape( $(this).children().first().html() ) + "&hashed={{hashed}}",
 			function(data){
 				$("#appraise").html(data);
 			});
-	$('.answer').remove();
+	$('fieldset').remove();
 });
 </script>
 
