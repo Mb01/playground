@@ -18,6 +18,12 @@ $('.answer').click(function(){
 				$("#appraise").html(data);
 			});
 	$('fieldset').remove();
+	user = readCookie('user');
+	user = user.split(':')[0];
+	newRating = readCookie('rating');
+	newRating = newRating.replace(user, '');
+	newRating = newRating.substr(0,7);
+	$('#rating').html(newRating);
 });
 </script>
 
