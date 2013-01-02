@@ -12,9 +12,10 @@ HTML_TEMPLATE = "mainpage.html"
 class MainPage(Handler):
     def get(self, arg):
         user = self.testCookie('user')
-        rating = str(self.testCookie('rating'))[len(user):len(user)+7]
         if not user:
             self.redirect("/login")
+        rating = str(self.testCookie('rating'))[len(user):len(user)+7]
+        
              
         self.render(HTML_TEMPLATE, username=user, rating=rating)#arg=arg etc...
         
