@@ -1,8 +1,8 @@
 <p>{{question}}</p>
-<button class="answer" id="option1">{{options[0]}}</button>
-<button class="answer" id="option2">{{options[1]}}</button>
-<button class="answer" id="option3">{{options[2]}}</button>
-<button class="answer" id="option4">{{options[3]}}</button>
+<button class="answer button" id="option1">{{options[0]}}</button>
+<button class="answer button" id="option2">{{options[1]}}</button>
+<button class="answer button" id="option3">{{options[2]}}</button>
+<button class="answer button" id="option4">{{options[3]}}</button>
 
 <div id="appraise"></div>
 
@@ -13,6 +13,7 @@ $('.answer').click(function(){
 			function(data){
 				$("#appraise").html(data);
 			});
+	$('.answer').remove();
 });
 </script>
 

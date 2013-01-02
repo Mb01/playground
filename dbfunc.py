@@ -26,7 +26,7 @@ def getQuestions(update=False):
     return questions
             
 def createQuestion(q, a, c1, c2, c3):
-    quest = Question(question=q, points=0, votes=0, answer=a, choice1=c1,choice2=c2,choice3=c3)
+    quest = Question(question=q, rating=0.0, votes=0, answer=a, choice1=c1,choice2=c2,choice3=c3)
     quest.put()
     logging.info("question: " + q + " created.")
     getQuestions(update=True)
@@ -50,5 +50,5 @@ def checkCred(username, password):
     if user:
         passMatch = testHash(user.password, password)
         if passMatch:
-            return True, user.username, user.points
+            return True, user.username, user.rating
     return False, None, None

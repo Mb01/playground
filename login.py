@@ -17,11 +17,11 @@ class Login(Handler):
         username = self.request.get("username")
         password = self.request.get("password")
         
-        test, username, score = checkCred(username, password)
+        test, username, rating = checkCred(username, password)
         if test:
             self.setCookie('user', username)
-        if score:
-            self.setCookie('score', score)
+        if rating:
+            self.setCookie('rating', rating)
         self.redirect("/")
 
 

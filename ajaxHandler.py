@@ -13,6 +13,7 @@ from secrets import testCookieHash, makeCookieHash
 HTML_TEMPLATE = "question.html"
 
 def questionForm():
+    '''provides all variables for question.html template as a dictionary'''
     questions = getQuestions()
     if not questions:
         return "Couldn't get a question."
@@ -28,6 +29,7 @@ class AjaxHandler(Handler):
         self.render(HTML_TEMPLATE, **questionForm())
         
     def post(self):
+        #case: create question
         q = self.request.get('q')
         a = self.request.get('a')
         c1= self.request.get('c1')
@@ -36,6 +38,7 @@ class AjaxHandler(Handler):
         if q and a and c1 and c2 and c3:
             createQuestion(q,a,c1,c2,c3)
             return
+        #case: grade question
         ans = self.request.get('ans')
         hashed = self.request.get('hashed')
         if ans and hashed:
@@ -43,7 +46,5 @@ class AjaxHandler(Handler):
                 self.response.out.write('<div style="color:green">That\'s correct!</div>')
             else:
                 self.response.out.write('<div style="color:red">Nope sorry.</div>')
-            
-
 app = webapp2.WSGIApplication([('/ajax', AjaxHandler)], debug=True)
 
