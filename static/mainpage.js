@@ -15,7 +15,6 @@ function readCookie(name) {
 	return null;
 }
 
-
 var attach = function(){
 	$cb = $("#createButton").parent();
 	oldVal = $cb.html();

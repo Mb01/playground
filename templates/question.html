@@ -1,5 +1,5 @@
-<fieldset style="margin: 10px;">
-<legend>{{question}}</legend>
+<fieldset id="boxThing" style="margin: 10px;">
+<legend style="font-size:30px;color:brown;">{{question}}</legend>
 <button class="answer button medium blue" id="option1"><span>{{options[0]}}</span></button>
 <button class="answer button medium blue" id="option2"><span>{{options[1]}}</span></button>
 <button class="answer button medium blue" id="option3"><span>{{options[2]}}</span></button>
@@ -16,14 +16,16 @@ $('.answer').click(function(){
 			"ans=" + escape( $(this).children().first().html() ) + "&hashed={{hashed}}",
 			function(data){
 				$("#appraise").html(data);
+			}
+	       ).complete(function(){
+				$('#boxThing').remove();
+				u = readCookie('user');
+				u = u.split(':')[0];
+				nR = readCookie('rating');
+				nR = nR.replace(u, '');
+				nR = nR.substr(0,7);
+				$('#rating').html(nR);
 			});
-	$('fieldset').remove();
-	user = readCookie('user');
-	user = user.split(':')[0];
-	newRating = readCookie('rating');
-	newRating = newRating.replace(user, '');
-	newRating = newRating.substr(0,7);
-	$('#rating').html(newRating);
-});
+	});
 </script>
 
