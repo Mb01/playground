@@ -12,7 +12,7 @@ class User(db.Model):
     password = db.StringProperty(required=True)
     email = db.StringProperty(required=False)
     created = db.DateTimeProperty(auto_now_add=True)
-    rating = db.FloatProperty(required=False)
+    rating = db.FloatProperty(required=True)
     privilageLevel = db.IntegerProperty(required=False)
     
     def asDict(self):
@@ -44,6 +44,7 @@ class Question(db.Model):
              "votes": self.votes,
              "choice1": self.choice1,
              "choice2": self.choice2,
-             "choice3": self.choice3
+             "choice3": self.choice3,
+             "key": self.key()
              }
         return d

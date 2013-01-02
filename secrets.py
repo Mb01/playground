@@ -32,9 +32,9 @@ salt8 ="TuFGhoIl"
 salt11 ="RRstigyQxMb"
 
 def makeCookieHash(raw):
-    return hashlib.sha256(salt8 + raw + salt11).hexdigest()
+    return hashlib.sha256(salt8 + str(raw) + salt11).hexdigest()
 def testCookieHash(t_hash, raw):
-    test = hashlib.sha256(salt8 + raw + salt11).hexdigest()
+    test = hashlib.sha256(salt8 + str(raw) + salt11).hexdigest()
     if t_hash == test:
         return True
     else:

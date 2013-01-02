@@ -7,7 +7,7 @@ import logging
 import random
 import webapp2
 from envdef import Handler
-from dbfunc import getQuestions, createQuestion
+from dbfunc import getQuestions, createQuestion, updateRating
 from secrets import testCookieHash, makeCookieHash
 
 HTML_TEMPLATE = "question.html"
@@ -26,9 +26,15 @@ def questionForm():
         
 class AjaxHandler(Handler):
     def get(self):
-        self.render(HTML_TEMPLATE, **questionForm())
+        qD = questionForm()
+        qRating = qD['rating']
+        self.setCookie('qRating', qRating)#secure with hash of answer or something later.
+        qK = qD['key']
+        self.setCookie('qK', str(qK))
+        self.render(HTML_TEMPLATE, **qD)
         
     def post(self):
+        ######################################
         #case: create question
         q = self.request.get('q')
         a = self.request.get('a')
@@ -38,13 +44,23 @@ class AjaxHandler(Handler):
         if q and a and c1 and c2 and c3:
             createQuestion(q,a,c1,c2,c3)
             return
+        ######################################
         #case: grade question
         ans = self.request.get('ans')
         hashed = self.request.get('hashed')
         if ans and hashed:
             if testCookieHash(hashed,ans):
                 self.response.out.write('<div style="color:green">That\'s correct!</div>')
+                score = 1
             else:
                 self.response.out.write('<div style="color:red">Nope sorry.</div>')
+                score = 0
+            userName = self.testCookie('user')
+            userRating = str(self.testCookie('rating'))[len(userName):]
+            qK = self.testCookie('qK')
+            qRating = self.testCookie('qRating')
+            userRating = updateRating(userName, float(userRating), qK, float(qRating), score)
+            self.setCookie('rating', userName + userRating)
+
 app = webapp2.WSGIApplication([('/ajax', AjaxHandler)], debug=True)
 

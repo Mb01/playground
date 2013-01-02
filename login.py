@@ -21,7 +21,7 @@ class Login(Handler):
         if test:
             self.setCookie('user', username)
         if rating:
-            self.setCookie('rating', rating)
+            self.setCookie('rating', username+str(rating))
         self.redirect("/")
 
 
