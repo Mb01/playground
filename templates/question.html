@@ -8,6 +8,8 @@
 
 <script>
 $('.answer').click(function(){
+	$("#appraise").html("Loading");
+	$("#appraise").fadeOut().fadeIn();
 	$.post("/ajax", 
 			"ans=" + escape( $(this).html() ) + "&hashed={{hashed}}",
 			function(data){
