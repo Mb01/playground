@@ -51,6 +51,7 @@ class Signup(Handler):
             self.render(def_template, error_username = error_username)
         else:
             self.setCookie('user', username)
+            self.setCookie('rating', username + str(1200.0))
             self.redirect("/")
 
 app = webapp2.WSGIApplication([('/signup', Signup)], debug=True)
