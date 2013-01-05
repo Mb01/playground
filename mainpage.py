@@ -14,6 +14,7 @@ class MainPage(Handler):
         user = self.testCookie('user')
         if not user:
             self.redirect("/login")
+            return
         rating = str(self.testCookie('rating'))[len(user):len(user)+7]
         
              
