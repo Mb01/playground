@@ -26,13 +26,13 @@ class User(db.Model):
             }
         return d
 
-
 class Question(db.Model):
     question = db.TextProperty(required=True)
     answer = db.StringProperty(required=True)
     choice1 = db.StringProperty(required=True)
     choice2 = db.StringProperty(required=True)
     choice3 = db.StringProperty(required=True)
+    genre = db.StringProperty(required=True)
     rating = db.FloatProperty(required=True)
     votes = db.IntegerProperty(required=True)
     
@@ -45,6 +45,7 @@ class Question(db.Model):
              "choice1": self.choice1,
              "choice2": self.choice2,
              "choice3": self.choice3,
+             "genre" : self.genre,
              "key": self.key()
              }
         return d

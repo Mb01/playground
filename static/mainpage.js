@@ -15,6 +15,16 @@ function readCookie(name) {
 	return null;
 }
 
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
 var attach = function(){
 	$cb = $("#createButton").parent();
 	oldVal = $cb.html();
@@ -34,6 +44,9 @@ $(function(){
 		$.get("/ajax", function(data){
 			$('#question').html(data);
 		});
+	});
+	$("#genre").click(function(){
+		createCookie( "genre", $("#genre").val(), 1 );
 	});
 	
 	$("#createButton").click(attach);

@@ -4,30 +4,21 @@ Created on Dec 29, 2012
 @author: mark
 '''
 
-import random
+
 import webapp2
 from envdef import Handler
-from dbfunc import getQuestions, createQuestion, updateRating, voteQuestion
+from dbfunc import getQuestion, createQuestion, updateRating, voteQuestion
 from secrets import testCookieHash, makeCookieHash
-
+import logging
 
 HTML_TEMPLATE = "question.html"
 
-def questionForm():
-    '''provides all variables for question.html template as a dictionary'''
-    questions = getQuestions()
-    if not questions:
-        return "Couldn't get a question."
-    q  = random.choice(questions)
-    options = [q['answer'], q['choice1'], q['choice2'], q['choice3']]    
-    random.shuffle(options)
-    q['options'] = options
-    q['hashed'] = makeCookieHash(q['answer'])
-    return q
-        
+      
 class AjaxHandler(Handler):
     def get(self):
-        qD = questionForm()
+        genre = self.request.cookies.get('genre')
+        logging.info(genre)
+        qD = getQuestion(genre)
         qRating = qD['rating']
         self.setCookie('qRating', qRating)#secure with hash of answer or something later.
         qK = qD['key']
@@ -42,8 +33,10 @@ class AjaxHandler(Handler):
         c1= self.request.get('c1')
         c2= self.request.get('c2')
         c3= self.request.get('c3')
-        if q and a and c1 and c2 and c3:
-            createQuestion(q,a,c1,c2,c3)
+        genre= self.request.get('genreSet')
+        logging.info("genre is: " + genre)
+        if q and a and c1 and c2 and c3 and genre:
+            createQuestion(q,a,c1,c2,c3, genre)
             return
         ######################################
         #case: grade question

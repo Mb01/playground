@@ -24,6 +24,11 @@
 		<div id="questions">
 			<div id="question"></div>
 			<button class="button small green" id="next"><span>next</span></button>
+			<select name="genre" id="genre">
+			{% for genre in genreList %}
+				<option value="{{genre}}">{{genre}}</option>
+			{% endfor %}
+			</select>
 		</div>
 	</div>
 	<div id="tabs-2">
@@ -41,6 +46,12 @@
 					<input type="text" name="c2" value="" /></br>
 					<label for="a">Wrong3</label>
 					<input type="text" name="c3" value="" /></br>
+					<label for="genreSet">Genre</label>
+					<select name="genreSet">
+						{% for genre in genreList %}
+							<option value="{{genre}}">{{genre}}</option>
+						{% endfor %}
+					</select>
 				</fieldset>
 			</form>
 			<div><button id="createButton">create</button></div>
