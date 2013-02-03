@@ -17,7 +17,6 @@ HTML_TEMPLATE = "question.html"
 class AjaxHandler(Handler):
     def get(self):
         genre = self.request.cookies.get('genre')
-        logging.info(genre)
         qD = getQuestion(genre)
         qRating = qD['rating']
         self.setCookie('qRating', qRating)#secure with hash of answer or something later.

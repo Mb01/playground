@@ -1,36 +1,35 @@
 <html>
 <head>
-<title>MainPage!</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href ="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-<script src="/mainpage.js"></script>
- 
+  <title>MainPage!</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href ="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+  <script src="/mainpage.js"></script> 
 </head>
 
 <body>
-
-<div id="topBar" style="font-size:30px">
-	<span style="color:blue">{{username}}</span> (rating : <span id="rating" style="color:orange">{{rating}}</span>)
-</div>
-<div id="tabs">
-	<ul>
-		<li><a href="#tabs-1">Questions</a></li>
-		<li><a href="#tabs-2">Create</a></li>
-	</ul>
-	
+  <div id="topBar" style="font-size:30px">
+    <span style="color:blue">{{username}}</span> (rating : <span id="rating" style="color:orange">{{rating}}</span>)
+  </div>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Questions</a></li>
+      <li><a href="#tabs-2">Create</a></li>
+    </ul>
 	<div id="tabs-1">
-		<div id="questions">
-			<div id="question"></div>
-			<button class="button small green" id="next"><span>next</span></button>
-			<select name="genre" id="genre">
-			{% for genre in genreList %}
-				<option value="{{genre}}">{{genre}}</option>
-			{% endfor %}
-			</select>
-		</div>
-	</div>
+      <div id="questions">
+        <div id="question"></div>
+          <button class="button small green" id="next"><span>next</span></button>
+          <select name="genre" id="genre">
+          
+          {% for genre in genreList %}
+          <option value="{{genre}}">{{genre}}</option>
+          {% endfor %}
+			
+          </select>
+        </div>
+    </div>
 	<div id="tabs-2">
 		
 		<div id="create">

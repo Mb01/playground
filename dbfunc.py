@@ -38,6 +38,7 @@ def getQuestion(genre):
         logging.error("dbfunc.py line 39: couldn't return a question for: " + genre)
         questions = getQuestionKeys("general")
     ranChoice  = random.choice(questions)
+    #not in cache get from db set cache
     q = memg( str(ranChoice) )
     if not q:
         q = db.get(ranChoice)
