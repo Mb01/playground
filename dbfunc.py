@@ -10,9 +10,8 @@ from dbdef import User, Question, db
 from cache_util import mems, memg
 
 def getGenreList():
-    genreList = ['general','math','geography']
+    genreList = ['general','math','geography', 'trivia']
     return genreList
-        
 
 def getQuestionKeys(genre, update=False):
     '''memset all the KEYS under the GENRE return the keys'''
