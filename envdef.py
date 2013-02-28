@@ -13,6 +13,8 @@ jinja_environment = jinja2.Environment(autoescape=True,
 
 class Handler(webapp2.RequestHandler):
     """Extends request handler with custom functions"""
+    
+    #wraps jinja2
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
     def render_str(self, template, **params):
@@ -21,6 +23,7 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
         
+    #wraps cookies
     def setCookie(self, name, value):
         '''set a cookie with a value and a hash of the value'''
         #get the value back with testCookie(name)

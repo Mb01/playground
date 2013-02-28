@@ -5,7 +5,7 @@ Created on Dec 1, 2012
 '''
 import webapp2
 from envdef import Handler
-from dbfunc import getGenreList
+#from dbfunc import 
 
 HTML_TEMPLATE = "mainpage.html"
 
@@ -15,10 +15,8 @@ class MainPage(Handler):
         if not user:
             self.redirect("/login")
             return
-        rating = str(self.testCookie('rating'))[len(user):len(user)+7]
-        genreList = getGenreList()
-             
-        self.render(HTML_TEMPLATE, username=user, rating=rating, genreList=genreList)
+        
+        self.render( HTML_TEMPLATE, username=user )
         
     def post(self, arg):
         self.redirect("/")

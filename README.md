@@ -1,4 +1,4 @@
 playground
 ==========
 
-making a quiz site
+generic form for branching into other uses
