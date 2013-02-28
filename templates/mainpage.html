@@ -9,55 +9,6 @@
 </head>
 
 <body>
-  <div id="topBar" style="font-size:30px">
-    <span style="color:blue">{{username}}</span> (rating : <span id="rating" style="color:orange">{{rating}}</span>)
-  </div>
-  <div id="tabs">
-    <ul>
-      <li><a href="#tabs-1">Questions</a></li>
-      <li><a href="#tabs-2">Create</a></li>
-    </ul>
-	<div id="tabs-1">
-      <div id="questions">
-        <div id="question"></div>
-          <button class="button small green" id="next"><span>next</span></button>
-          <select name="genre" id="genre">
-          
-          {% for genre in genreList %}
-          <option value="{{genre}}">{{genre}}</option>
-          {% endfor %}
-			
-          </select>
-        </div>
-    </div>
-	<div id="tabs-2">
-		
-		<div id="create">
-			<form id="createForm" name="createForm" action="">
-				<fieldset>
-					<label for="q">Question</label>
-					<input type="text" name="q" value="" /><br>
-					<label for="a">Answer</label>
-					<input type="text" name="a" value="" /><br>
-					<label for="a">Wrong1</label>
-					<input type="text" name="c1" value="" /><br>
-					<label for="a">Wrong2</label>
-					<input type="text" name="c2" value="" /><br>
-					<label for="a">Wrong3</label>
-					<input type="text" name="c3" value="" /><br>
-					<label for="genreSet">Genre</label>
-					<select name="genreSet">
-						{% for genre in genreList %}
-							<option value="{{genre}}">{{genre}}</option>
-						{% endfor %}
-					</select>
-				</fieldset>
-			</form>
-			<div><button id="createButton">create</button></div>
-		</div>
-		
-	</div>
-</div>
 
 
 </body>
