@@ -85,7 +85,8 @@ def checkCred(username, password):
 
 
 
-#updateRaing and subfunctions
+#updateRaing and subfunctions 
+#These give an ELO rating
 def getExpectation(rating_1, rating_2):
     '''generates the expected for rating_1 for modifyRating function'''
     return (1.0 / (1.0 + pow(10, ((rating_2 - rating_1) / 400))))
