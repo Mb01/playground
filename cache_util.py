@@ -3,8 +3,7 @@ Created on Dec 1, 2012
 
 @author: mark
 
-these functions provide resource cheap caching of data
-use database for permanence
+wrap memcache
 '''
 
 from google.appengine.api import memcache
